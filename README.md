@@ -33,3 +33,22 @@ kilofy(4374389489327893);
 
 // "4,374,389,489,327,893"
 ```
+
+## 格式化 URL 查询字符串为对象
+
+replace 回调的后两个参数 k 和 v，分别对应正则中的两个捕获组。
+
+```javascript
+const reg = /([^?&=]+)=([^&]+)/g;
+
+function getQueryStringObject() {
+    const q = {};
+    location.search.replace(reg, (m, k, v) => q[k] = v);
+    return q;
+}
+
+getQueryStringObject();
+
+// URL: https://matiji.cn/path?a=z&b=y&c=x
+// { a: z, b: y: c: x }
+```
